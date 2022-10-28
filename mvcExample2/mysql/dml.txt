@@ -1,0 +1,4 @@
+insert into product(id, name, model, madein, price, readcnt) values(1, "냉장고", "삼성전자 삼성 Rb30R4051B1", "대한민국", 1000000, 0);
+insert into product(id, name, model, madein, price, readcnt) values(2, "냉장고", "LG전자 오브제컬렉션 S834MKE10", "대한민국", 890000, 0);
+insert into product(id, name, model, madein, price, readcnt) values(3, "휴대폰", "애플 아이폰14 프로 256GB 미개통 새상품", "미국", 1450000, 0);
+insert into product(id, name, model, madein, price, readcnt) values(4, "휴대폰", "샤오미 레드미 노트 11 LTE 128GB[자급제]", "중국", 530000, 0);
