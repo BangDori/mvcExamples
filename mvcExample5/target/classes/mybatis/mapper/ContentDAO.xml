@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chap6.model.ContentDAO">
+    <insert id="addArticle" parameterType="chap6.model.ContentVO" useGeneratedKeys="true" keyProperty="aid"
+            keyColumn="article_no">
+        insert into article_content(article_no, content)
+        values (#{aid}, #{content});
+    </insert>
+    
+    <select id="getArticleById" parameterType="Integer" resultType="chap6.model.ContentVO">
+    	select article_no aid, content 
+    	from article_content
+    	where article_no = #{aid};
+    </select>
+
+    <update id="updateArticle" parameterType="Map">
+        update article_content
+        set content = #{content}
+        where article_no = #{aid};
+    </update>
+
+    <delete id="deleteArticle" parameterType="Integer">
+        delete from article
+        where article_no = #{aid};
+    </delete>
+</mapper>

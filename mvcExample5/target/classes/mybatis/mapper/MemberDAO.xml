@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chap6.model.MemberDAO">
+    <select id="listMembers" resultType="chap6.model.MemberVO">
+        select *
+        from member
+        order by id
+    </select>
+
+    <select id="getMember" parameterType="Integer" resultType="chap6.model.MemberVO">
+        select *
+        from member
+        where id = #{id}
+    </select>
+
+    <select id="getMemberByEmail" parameterType="String" resultType="chap6.model.MemberVO">
+        select *
+        from member
+        where email = #{email}
+    </select>
+
+    <insert id="addMember" parameterType="chap6.model.MemberVO">
+        insert into member(name, password, email, regdate)
+        values (#{name}, #{password}, #{email}, #{regdate})
+    </insert>
+
+    <update id="updateMember" parameterType="chap6.model.MemberVO">
+        update member
+        set name = #{name}, password = #{password},
+            email = #{email}, regdate = #{regdate}
+        where id = ${id}
+    </update>
+
+    <delete id="deleteMember" parameterType="Integer">
+        delete
+        from member
+        where id = #{id}
+    </delete>
+</mapper>

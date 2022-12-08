@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+				"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="chap6.model.ArticleDAO">
+    <select id="getAllArticles" resultType="chap6.model.ArticleVO">
+        select article_no aid, writer, name, title, a.regdate, moddate, read_cnt readcnt
+        from article a, member m
+        where a.writer = m.id;
+    </select>
+
+    <insert id="addArticle" parameterType="chap6.model.ArticleVO" useGeneratedKeys="true" keyProperty="aid"
+            keyColumn="article_no">
+        insert into article(writer, title, regdate, read_cnt)
+        values (#{writer}, #{title}, sysdate(), #{readcnt});
+    </insert>
+
+	<select id="getArticleNo" parameterType="String" resultType="Integer">
+		Select article_no aid
+		from article
+		where title = #{title}
+	</select>
+    <select id="getArticleById" parameterType="Integer" resultType="chap6.model.ArticleVO">
+        select article_no aid, writer, name, title, a.regdate, moddate, read_cnt readcnt
+        from article a, member m
+        where a.writer = m.id and a.article_no = #{aid};
+    </select>
+
+    <update id="updateReadcnt" parameterType="Integer">
+        update article
+        set read_cnt = read_cnt + 1
+        where article_no = #{aid};
+    </update>
+
+    <update id="updateArticle" parameterType="Map">
+        update article
+        set title = #{title}, moddate = sysdate()
+        where article_no = #{aid};
+    </update>
+    
+    <delete id="deleteArticle" parameterType="Integer">
+        delete from article
+        where article_no = #{aid};
+    </delete>
+</mapper>
